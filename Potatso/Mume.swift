@@ -9,7 +9,7 @@
 import Foundation
 
 class Mume {
-    static let xAppSharedGroupIdentifier = "group.info.liruqi.potatso"
+    static let xAppSharedGroupIdentifier = "group.com.nina.mtfly2"
     
     static func sharedUserDefaults() -> UserDefaults? {
         return UserDefaults(suiteName: xAppSharedGroupIdentifier)

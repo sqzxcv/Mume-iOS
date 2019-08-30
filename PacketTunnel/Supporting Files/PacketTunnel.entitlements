@@ -14,7 +14,7 @@
 	</array>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>group.info.liruqi.potatso</string>
+		<string>group.com.nina.mtfly2</string>
 	</array>
 </dict>
 </plist>

@@ -503,7 +503,7 @@ extension Manager {
     fileprivate func createProviderManager() -> NETunnelProviderManager {
         let manager = NETunnelProviderManager()
         let p = NETunnelProviderProtocol()
-        p.providerBundleIdentifier = "info.liruqi.potatso.tunnel"
+        p.providerBundleIdentifier = "com.nina.mtfly2.extension"
         if let upstreamProxy = upstreamProxy {
             p.providerConfiguration = ["host": upstreamProxy.host, "port": upstreamProxy.port]
             p.serverAddress = upstreamProxy.host

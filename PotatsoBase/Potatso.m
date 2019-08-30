@@ -8,7 +8,7 @@
 
 #import "Potatso.h"
 
-NSString *sharedGroupIdentifier = @"group.info.liruqi.potatso";
+NSString *sharedGroupIdentifier = @"group.com.nina.mtfly2";
 NSString *shadowsocksLogFile = @"shadowsocks.log";
 NSString *privoxyLogFile = @"privoxy.log";
 

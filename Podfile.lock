@@ -55,11 +55,31 @@ DEPENDENCIES:
   - SVPullToRefresh (from `https://github.com/samvermette/SVPullToRefresh`)
   - SwiftColor
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - AsyncSwift
+    - CallbackURLKit
+    - Cartography
+    - CocoaAsyncSocket
+    - Crashlytics
+    - EFQRCode
+    - Eureka
+    - Fabric
+    - MBProgressHUD
+    - MMDB-Swift
+    - MMWormhole
+    - ObjectMapper
+    - PSOperations
+    - Realm
+    - RealmSwift
+    - SwiftColor
+
 EXTERNAL SOURCES:
   Aspects:
-    :path: ./Library/Aspects/
+    :path: "./Library/Aspects/"
   ICSMainFramework:
-    :path: ./Library/ICSMainFramework/
+    :path: "./Library/ICSMainFramework/"
   SVPullToRefresh:
     :git: https://github.com/samvermette/SVPullToRefresh
 
@@ -92,4 +112,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 34f8fbd073af4241d48236ae074407d199f85b8c
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.6.1
