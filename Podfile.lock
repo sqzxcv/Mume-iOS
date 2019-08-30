@@ -5,7 +5,7 @@ PODS:
   - CallbackURLKit (2.0.0):
     - CallbackURLKit/Core (= 2.0.0)
   - CallbackURLKit/Core (2.0.0)
-  - Cartography (3.0.0)
+  - Cartography (4.0.0)
   - CocoaAsyncSocket (7.4.3):
     - CocoaAsyncSocket/All (= 7.4.3)
   - CocoaAsyncSocket/All (7.4.3):
@@ -16,7 +16,7 @@ PODS:
   - Crashlytics (3.9.3):
     - Fabric (~> 1.7.2)
   - EFQRCode (1.2.7)
-  - Eureka (4.0.1)
+  - Eureka (4.3.1)
   - Fabric (1.7.2)
   - ICSMainFramework (0.0.1)
   - MBProgressHUD (1.0.0)
@@ -24,13 +24,27 @@ PODS:
   - MMWormhole (2.0.0):
     - MMWormhole/Core (= 2.0.0)
   - MMWormhole/Core (2.0.0)
-  - ObjectMapper (3.1.0)
-  - PSOperations/Core (4.0.0)
-  - Realm (3.0.2):
-    - Realm/Headers (= 3.0.2)
-  - Realm/Headers (3.0.2)
-  - RealmSwift (3.0.2):
-    - Realm (= 3.0.2)
+  - ObjectMapper (3.4.2)
+  - PSOperations (4.2.0):
+    - PSOperations/Calendar (= 4.2.0)
+    - PSOperations/Core (= 4.2.0)
+    - PSOperations/Health (= 4.2.0)
+    - PSOperations/Location (= 4.2.0)
+    - PSOperations/Passbook (= 4.2.0)
+  - PSOperations/Calendar (4.2.0):
+    - PSOperations/Core
+  - PSOperations/Core (4.2.0)
+  - PSOperations/Health (4.2.0):
+    - PSOperations/Core
+  - PSOperations/Location (4.2.0):
+    - PSOperations/Core
+  - PSOperations/Passbook (4.2.0):
+    - PSOperations/Core
+  - Realm (3.16.2):
+    - Realm/Headers (= 3.16.2)
+  - Realm/Headers (3.16.2)
+  - RealmSwift (3.16.2):
+    - Realm (= 3.16.2)
   - SVPullToRefresh (0.4.1)
   - SwiftColor (0.4.0)
 
@@ -40,18 +54,19 @@ DEPENDENCIES:
   - AsyncSwift
   - CallbackURLKit
   - Cartography
+  - Cartography (= 4.0.0)
   - CocoaAsyncSocket (~> 7.4.3)
   - Crashlytics
   - EFQRCode (~> 1.2.5)
-  - Eureka
+  - Eureka (~> 4.3.0)
   - Fabric
   - ICSMainFramework (from `./Library/ICSMainFramework/`)
   - MBProgressHUD
   - MMDB-Swift
   - MMWormhole (~> 2.0.0)
-  - ObjectMapper
-  - PSOperations/Core
-  - RealmSwift
+  - ObjectMapper (= 3.4.2)
+  - PSOperations (~> 4.0)
+  - RealmSwift (~> 3.16.2)
   - SVPullToRefresh (from `https://github.com/samvermette/SVPullToRefresh`)
   - SwiftColor
 
@@ -93,23 +108,23 @@ SPEC CHECKSUMS:
   Aspects: 35254a4a73948e7bc1118ce0554674f77467a80b
   AsyncSwift: 65775a7b32e740609b24969ece3de58723b9dc3e
   CallbackURLKit: eebcf4ecbb70dc8c970f9fcf1ff70162c5ea0965
-  Cartography: 105643267226a7ab58895b94b44727eb013e31ce
+  Cartography: c5626d29056b20f1e95c017326ee4df57cc39ad8
   CocoaAsyncSocket: a18c75dca4b08723628a0bacca6e94803d90be91
   Crashlytics: dbb07d01876c171c5ccbdf7826410380189e452c
   EFQRCode: f283d7ce75a7780756a5e2a9c39077292d6e7596
-  Eureka: c8bd5cc07143b6f66268c208d28a246c99b41955
+  Eureka: 28ea296f06710f6745266b71f17862048941a32d
   Fabric: 9cd6a848efcf1b8b07497e0b6a2e7d336353ba15
   ICSMainFramework: 56240e9556d3b0755fc9c934a91ee8ebd09cb753
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   MMDB-Swift: 4db9673b1682d9157a791814dcd531222d08a3bb
   MMWormhole: 0cd3fd35a9118b2e2d762b499f54eeaace0be791
-  ObjectMapper: 20505058f54e5c3ca69e1d6de9897d152a5369a6
-  PSOperations: c2f76297eabc5625a5e446abcfa88a95d17cb761
-  Realm: 6f23fd1f178a09342eac21bfa7c2bf4312a7a180
-  RealmSwift: 695393add1b8f9d5fa75dd16e6355cf3935f71e2
+  ObjectMapper: 0d4402610f4e468903ae64629eec4784531e5c51
+  PSOperations: c61e49d2b456b82986174bca82fd7b4716dce372
+  Realm: 0e73b4edeb5b6a90da3d83206883b2e34e00eb38
+  RealmSwift: a81e650171ef0a5f999df1ed8d39ba8d6fce88a4
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
   SwiftColor: c240d8cb2e1a29d731ae8deca8739eac6b9c56bd
 
-PODFILE CHECKSUM: 34f8fbd073af4241d48236ae074407d199f85b8c
+PODFILE CHECKSUM: 8302f082d4d6ddf0bd2aa1d814b2d220f856b1f1
 
 COCOAPODS: 1.6.1

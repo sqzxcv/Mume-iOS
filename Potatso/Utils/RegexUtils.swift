@@ -35,7 +35,7 @@ class Regex {
 
         var results = [String]()
         for i in 1...lastRangeIndex {
-            let capturedGroupIndex = match.rangeAt(i)
+            let capturedGroupIndex = match.range(at: i)
             let matchedString = (string as NSString).substring(with: capturedGroupIndex)
             results.append(matchedString)
         }

@@ -44,9 +44,9 @@ public func setupDefaultReaml() {
 
 
 open class BaseModel: Object {
-    open dynamic var uuid = UUID().uuidString
-    open dynamic var createAt = Date().timeIntervalSince1970
-    open dynamic var updatedAt = Date().timeIntervalSince1970
+    @objc open dynamic var uuid = UUID().uuidString
+    @objc open dynamic var createAt = Date().timeIntervalSince1970
+    @objc open dynamic var updatedAt = Date().timeIntervalSince1970
 
     override open static func primaryKey() -> String? {
         return "uuid"

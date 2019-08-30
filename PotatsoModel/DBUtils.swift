@@ -30,7 +30,7 @@ open class DBUtils {
         try mRealm.commitWrite()
     }
 
-    open static func add<S: Sequence where S.Iterator.Element: BaseModel>(_ objects: S, update: Bool = true, setModified: Bool = true, inRealm realm: Realm? = nil) throws {
+    open static func add<S: Sequence>(_ objects: S, update: Bool = true, setModified: Bool = true, inRealm realm: Realm? = nil) throws where S.Iterator.Element: BaseModel {
         let mRealm = currentRealm(realm)
         mRealm.beginWrite()
         objects.forEach({

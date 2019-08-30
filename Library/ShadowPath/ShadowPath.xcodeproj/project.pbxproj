@@ -311,10 +311,11 @@
 		B8DEFEFA1CEA1D4C003FC706 /* jcc.h in Headers */ = {isa = PBXBuildFile; fileRef = B8DEFEF81CEA1D4C003FC706 /* jcc.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B8DEFEFC1CEA1DCE003FC706 /* sp_config.h in Headers */ = {isa = PBXBuildFile; fileRef = B8DEFEFB1CEA1DCE003FC706 /* sp_config.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B8DEFEFE1CEA1EB7003FC706 /* project.h in Headers */ = {isa = PBXBuildFile; fileRef = B8DEFEFD1CEA1EB7003FC706 /* project.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B8EAC6501D40D01C0046963C /* maxminddb.h in Headers */ = {isa = PBXBuildFile; fileRef = B8EAC5C61D40D01C0046963C /* maxminddb.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B8EAC6511D40D01C0046963C /* maxminddb_config.h in Headers */ = {isa = PBXBuildFile; fileRef = B8EAC5C71D40D01C0046963C /* maxminddb_config.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B8EAC67F1D40D01C0046963C /* maxminddb-compat-util.h in Headers */ = {isa = PBXBuildFile; fileRef = B8EAC5FA1D40D01C0046963C /* maxminddb-compat-util.h */; };
 		B8EAC6801D40D01C0046963C /* maxminddb.c in Sources */ = {isa = PBXBuildFile; fileRef = B8EAC5FB1D40D01C0046963C /* maxminddb.c */; };
+		EB74BD222319C0B700868FD3 /* maxminddb_config.h in Headers */ = {isa = PBXBuildFile; fileRef = EB74BD1F2319C0B700868FD3 /* maxminddb_config.h */; };
+		EB74BD232319C0B700868FD3 /* maxminddb.h in Headers */ = {isa = PBXBuildFile; fileRef = EB74BD202319C0B700868FD3 /* maxminddb.h */; };
+		EB74BD242319C0B700868FD3 /* maxminddb_config.h.in in Resources */ = {isa = PBXBuildFile; fileRef = EB74BD212319C0B700868FD3 /* maxminddb_config.h.in */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -651,10 +652,11 @@
 		B8DEFEF81CEA1D4C003FC706 /* jcc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jcc.h; sourceTree = "<group>"; };
 		B8DEFEFB1CEA1DCE003FC706 /* sp_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sp_config.h; sourceTree = "<group>"; };
 		B8DEFEFD1CEA1EB7003FC706 /* project.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = project.h; sourceTree = "<group>"; };
-		B8EAC5C61D40D01C0046963C /* maxminddb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = maxminddb.h; sourceTree = "<group>"; };
-		B8EAC5C71D40D01C0046963C /* maxminddb_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = maxminddb_config.h; sourceTree = "<group>"; };
 		B8EAC5FA1D40D01C0046963C /* maxminddb-compat-util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "maxminddb-compat-util.h"; sourceTree = "<group>"; };
 		B8EAC5FB1D40D01C0046963C /* maxminddb.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = maxminddb.c; sourceTree = "<group>"; };
+		EB74BD1F2319C0B700868FD3 /* maxminddb_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = maxminddb_config.h; sourceTree = "<group>"; };
+		EB74BD202319C0B700868FD3 /* maxminddb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = maxminddb.h; sourceTree = "<group>"; };
+		EB74BD212319C0B700868FD3 /* maxminddb_config.h.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = maxminddb_config.h.in; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1232,8 +1234,9 @@
 		B8EAC5C51D40D01C0046963C /* include */ = {
 			isa = PBXGroup;
 			children = (
-				B8EAC5C61D40D01C0046963C /* maxminddb.h */,
-				B8EAC5C71D40D01C0046963C /* maxminddb_config.h */,
+				EB74BD1F2319C0B700868FD3 /* maxminddb_config.h */,
+				EB74BD212319C0B700868FD3 /* maxminddb_config.h.in */,
+				EB74BD202319C0B700868FD3 /* maxminddb.h */,
 			);
 			path = include;
 			sourceTree = "<group>";
@@ -1296,7 +1299,6 @@
 				B86B08441D17DABB00613014 /* acl.h in Headers */,
 				B818877A1D2BFC1B00E41C89 /* krb5_asn.h in Headers */,
 				B818876F1D2BFC1B00E41C89 /* dtls1.h in Headers */,
-				B8EAC6511D40D01C0046963C /* maxminddb_config.h in Headers */,
 				B82847711CEB105B00820456 /* parsers.h in Headers */,
 				B86B085F1D17DABB00613014 /* socks5.h in Headers */,
 				B82847651CEB0E6400820456 /* internal.h in Headers */,
@@ -1378,6 +1380,7 @@
 				B81887901D2BFC1B00E41C89 /* rsa.h in Headers */,
 				B818887C1D2C09DA00E41C89 /* crypto_secretbox.h in Headers */,
 				B818888D1D2C09DA00E41C89 /* crypto_uint8.h in Headers */,
+				EB74BD222319C0B700868FD3 /* maxminddb_config.h in Headers */,
 				B86B08471D17DABB00613014 /* cache.h in Headers */,
 				B8EAC67F1D40D01C0046963C /* maxminddb-compat-util.h in Headers */,
 				B81888701D2C09DA00E41C89 /* crypto_hash.h in Headers */,
@@ -1407,6 +1410,7 @@
 				B86B07DE1D17DABB00613014 /* udns.h in Headers */,
 				B81888981D2C09DA00E41C89 /* sodium.h in Headers */,
 				B81887821D2BFC1B00E41C89 /* objects.h in Headers */,
+				EB74BD232319C0B700868FD3 /* maxminddb.h in Headers */,
 				B81888691D2C09DA00E41C89 /* crypto_core_hchacha20.h in Headers */,
 				B81887861D2BFC1B00E41C89 /* ossl_typ.h in Headers */,
 				B818886E1D2C09DA00E41C89 /* crypto_generichash.h in Headers */,
@@ -1424,7 +1428,6 @@
 				B86B04B11D17DABB00613014 /* config.h in Headers */,
 				B81888831D2C09DA00E41C89 /* crypto_stream.h in Headers */,
 				B81888851D2C09DA00E41C89 /* crypto_stream_chacha20.h in Headers */,
-				B8EAC6501D40D01C0046963C /* maxminddb.h in Headers */,
 				B818878A1D2BFC1B00E41C89 /* pkcs7.h in Headers */,
 				B81887811D2BFC1B00E41C89 /* obj_mac.h in Headers */,
 				B81887671D2BFC1B00E41C89 /* conf.h in Headers */,
@@ -1507,6 +1510,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -1538,6 +1542,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B81887591D2BFC1B00E41C89 /* LICENSE in Resources */,
+				EB74BD242319C0B700868FD3 /* maxminddb_config.h.in in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1822,6 +1827,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/ShadowPath/libmaxminddb/include\"",
 					"${SRCROOT}/ShadowPath/Shadowsocks-libev/libcork/include",
 					"${SRCROOT}/ShadowPath/Shadowsocks-libev/libipset/include",
 					"${SRCROOT}/ShadowPath/libopenssl/include",
@@ -1858,6 +1864,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/ShadowPath/libmaxminddb/include\"",
 					"${SRCROOT}/ShadowPath/Shadowsocks-libev/libcork/include",
 					"${SRCROOT}/ShadowPath/Shadowsocks-libev/libipset/include",
 					"${SRCROOT}/ShadowPath/libopenssl/include",

@@ -1,6 +1,6 @@
 source 'https://github.com/CocoaPods/Specs.git'
 
-platform :ios, '9.0'
+platform :ios, '9.2'
 use_frameworks!
 
 def library
@@ -19,22 +19,23 @@ def socket
 end
 
 def model
-    pod 'RealmSwift'
-    pod 'ObjectMapper'
+    pod 'RealmSwift', '~> 3.16.2'
+    pod 'ObjectMapper', '3.4.2'
 end
 
 target "Potatso" do
     pod 'Alamofire'
     pod 'Aspects', :path => "./Library/Aspects/"
-    pod 'Cartography'
+    pod 'Cartography', '4.0.0'
     pod 'AsyncSwift'
     pod 'SwiftColor'
-    pod 'Eureka'
+    pod 'Eureka', '~> 4.3.0'
     pod 'MBProgressHUD'
     pod 'CallbackURLKit'
     pod 'SVPullToRefresh', :git => 'https://github.com/samvermette/SVPullToRefresh'
-    pod 'ObjectMapper'
-    pod 'PSOperations/Core'
+    pod 'ObjectMapper', '3.4.2'
+    pod 'PSOperations', '~> 4.0'
+#    pod 'PSOperations/Core'
     pod 'Fabric'
     pod 'Crashlytics'
     pod "EFQRCode", '~> 1.2.5'
