@@ -57,14 +57,14 @@ class ConfigGroupChooseWindow: UIWindow {
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(chooseVC.view)
-        NotificationCenter.default.addObserver(self, selector: #selector(ConfigGroupChooseWindow.onStatusBarFrameChange), name: NSNotification.Name.UIApplicationDidChangeStatusBarFrame, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ConfigGroupChooseWindow.onStatusBarFrameChange), name: UIApplication.didChangeStatusBarFrameNotification, object: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func onStatusBarFrameChange() {
+    @objc func onStatusBarFrameChange() {
         frame = UIScreen.main.bounds
     }
 
@@ -116,7 +116,7 @@ class ConfigGroupChooseVC: UIViewController, UITableViewDataSource, UITableViewD
         token?.invalidate()
     }
 
-    func onVPNStatusChanged() {
+    @objc func onVPNStatusChanged() {
         updateUI()
     }
 
@@ -129,7 +129,7 @@ class ConfigGroupChooseVC: UIViewController, UITableViewDataSource, UITableViewD
         ConfigGroupChooseManager.shared.hide()
     }
 
-    func onTap() {
+    @objc func onTap() {
         ConfigGroupChooseManager.shared.hide()
     }
 
@@ -176,11 +176,11 @@ class ConfigGroupChooseVC: UIViewController, UITableViewDataSource, UITableViewD
         return groups.count > 1
     }
 
-    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .delete
     }
 
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let item: ConfigurationGroup
             guard indexPath.row < groups.count else {

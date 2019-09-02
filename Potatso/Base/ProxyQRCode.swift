@@ -38,7 +38,7 @@ class ProxyQRCode : UIView {
         }
     }
     
-    func onShare(_ sender: UITapGestureRecognizer) {
+    @objc func onShare(_ sender: UITapGestureRecognizer) {
         if let image = self.image {
             let status = PHPhotoLibrary.authorizationStatus()
             if status != .notDetermined {

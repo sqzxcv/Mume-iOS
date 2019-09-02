@@ -313,8 +313,8 @@
 		B8DEFEFE1CEA1EB7003FC706 /* project.h in Headers */ = {isa = PBXBuildFile; fileRef = B8DEFEFD1CEA1EB7003FC706 /* project.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B8EAC67F1D40D01C0046963C /* maxminddb-compat-util.h in Headers */ = {isa = PBXBuildFile; fileRef = B8EAC5FA1D40D01C0046963C /* maxminddb-compat-util.h */; };
 		B8EAC6801D40D01C0046963C /* maxminddb.c in Sources */ = {isa = PBXBuildFile; fileRef = B8EAC5FB1D40D01C0046963C /* maxminddb.c */; };
-		EB74BD222319C0B700868FD3 /* maxminddb_config.h in Headers */ = {isa = PBXBuildFile; fileRef = EB74BD1F2319C0B700868FD3 /* maxminddb_config.h */; };
-		EB74BD232319C0B700868FD3 /* maxminddb.h in Headers */ = {isa = PBXBuildFile; fileRef = EB74BD202319C0B700868FD3 /* maxminddb.h */; };
+		EB74BD222319C0B700868FD3 /* maxminddb_config.h in Headers */ = {isa = PBXBuildFile; fileRef = EB74BD1F2319C0B700868FD3 /* maxminddb_config.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EB74BD232319C0B700868FD3 /* maxminddb.h in Headers */ = {isa = PBXBuildFile; fileRef = EB74BD202319C0B700868FD3 /* maxminddb.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EB74BD242319C0B700868FD3 /* maxminddb_config.h.in in Resources */ = {isa = PBXBuildFile; fileRef = EB74BD212319C0B700868FD3 /* maxminddb_config.h.in */; };
 /* End PBXBuildFile section */
 
@@ -1257,6 +1257,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB74BD222319C0B700868FD3 /* maxminddb_config.h in Headers */,
+				EB74BD232319C0B700868FD3 /* maxminddb.h in Headers */,
 				B818879C1D2BFC1B00E41C89 /* tls1.h in Headers */,
 				B81888711D2C09DA00E41C89 /* crypto_hash_sha256.h in Headers */,
 				B81888601D2C09DA00E41C89 /* core.h in Headers */,
@@ -1380,7 +1382,6 @@
 				B81887901D2BFC1B00E41C89 /* rsa.h in Headers */,
 				B818887C1D2C09DA00E41C89 /* crypto_secretbox.h in Headers */,
 				B818888D1D2C09DA00E41C89 /* crypto_uint8.h in Headers */,
-				EB74BD222319C0B700868FD3 /* maxminddb_config.h in Headers */,
 				B86B08471D17DABB00613014 /* cache.h in Headers */,
 				B8EAC67F1D40D01C0046963C /* maxminddb-compat-util.h in Headers */,
 				B81888701D2C09DA00E41C89 /* crypto_hash.h in Headers */,
@@ -1410,7 +1411,6 @@
 				B86B07DE1D17DABB00613014 /* udns.h in Headers */,
 				B81888981D2C09DA00E41C89 /* sodium.h in Headers */,
 				B81887821D2BFC1B00E41C89 /* objects.h in Headers */,
-				EB74BD232319C0B700868FD3 /* maxminddb.h in Headers */,
 				B81888691D2C09DA00E41C89 /* crypto_core_hchacha20.h in Headers */,
 				B81887861D2BFC1B00E41C89 /* ossl_typ.h in Headers */,
 				B818886E1D2C09DA00E41C89 /* crypto_generichash.h in Headers */,

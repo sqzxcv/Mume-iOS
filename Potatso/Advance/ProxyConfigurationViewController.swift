@@ -227,7 +227,7 @@ class ProxyConfigurationViewController: FormViewController {
         }
     }
     
-    func onSave() {
+    @objc func onSave() {
         if let error = self.save(to: &self.upstreamProxy) {
             showTextHUD("\(error)", dismissAfterDelay: 1.0)
             return

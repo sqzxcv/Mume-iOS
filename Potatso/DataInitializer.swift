@@ -22,7 +22,7 @@ class DataInitializer: NSObject, AppLifeCycleProtocol {
     static var vpnStatus: VPNStatus = .off
     static var selectedProxy: String? = nil
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         let _ = Manager.shared
         
         self.updateMumeServers()

@@ -86,7 +86,7 @@ class RecentRequestsVC: UIViewController, UITableViewDataSource, UITableViewDele
         tableView.reloadData()
     }
     
-    func onVPNStatusChanged() {
+    @objc func onVPNStatusChanged() {
         let on = [VPNStatus.on, VPNStatus.connecting].contains(Manager.shared.vpnStatus)
         hintLabel.isHidden = on
         if on && showingCache {
@@ -146,7 +146,7 @@ class RecentRequestsVC: UIViewController, UITableViewDataSource, UITableViewDele
         v.tableHeaderView = UIView()
         v.separatorStyle = .singleLine
         v.estimatedRowHeight = 70
-        v.rowHeight = UITableViewAutomaticDimension
+        v.rowHeight = UITableView.automaticDimension
         return v
     }()
     

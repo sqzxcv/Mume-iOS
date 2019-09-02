@@ -32,11 +32,11 @@ class ProxyUtils {
     // https://stackoverflow.com/questions/25890533/
     static func resolve(host: String, completion: @escaping ((String) -> Void)) {
         let queue = DispatchQueue.global(qos: .background)
-        guard let lhost = String(host) else {
-            return
-        }
+//        guard let lhost = String(host) else {
+//            return
+//        }
         queue.async {
-            let host = CFHostCreateWithName(nil, lhost as CFString).takeRetainedValue()
+            let host = CFHostCreateWithName(nil, host as CFString).takeRetainedValue()
             CFHostStartInfoResolution(host, .addresses, nil)
             var success: DarwinBoolean = false
             if let addresses = CFHostGetAddressing(host, &success)?.takeUnretainedValue() as NSArray?,

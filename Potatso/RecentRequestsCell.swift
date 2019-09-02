@@ -33,7 +33,7 @@ class RecentRequestsCell: UITableViewCell {
         return f
     }()
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(methodLabel)
         contentView.addSubview(urlLabel)
@@ -75,8 +75,8 @@ class RecentRequestsCell: UITableViewCell {
     }
     
     func setupLayout() {
-        timeLabel.setContentHuggingPriority(UILayoutPriorityRequired, for: .horizontal)
-        timeLabel.setContentCompressionResistancePriority(UILayoutPriorityRequired, for: .horizontal)
+        timeLabel.setContentHuggingPriority(UILayoutPriority.required, for: .horizontal)
+        timeLabel.setContentCompressionResistancePriority(UILayoutPriority.required, for: .horizontal)
         constrain(contentView, self) { contentView, superview in
             contentView.edges == superview.edges
         }

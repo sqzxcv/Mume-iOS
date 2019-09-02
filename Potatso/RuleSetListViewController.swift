@@ -80,7 +80,7 @@ class RuleSetListViewController: UIViewController, UITableViewDataSource, UITabl
         tableView.reloadData()
     }
 
-    func add() {
+    @objc func add() {
         let vc = RuleSetConfigurationViewController()
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -124,7 +124,7 @@ class RuleSetListViewController: UIViewController, UITableViewDataSource, UITabl
         return chooseCallback == nil
     }
 
-    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         let item = ruleSets[indexPath.row]
         if item.isOfficial {
             return .none
@@ -132,7 +132,7 @@ class RuleSetListViewController: UIViewController, UITableViewDataSource, UITabl
         return .delete
     }
 
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let item = ruleSets[indexPath.row]
             do {
@@ -161,7 +161,7 @@ class RuleSetListViewController: UIViewController, UITableViewDataSource, UITabl
         v.delegate = self
         v.tableFooterView = UIView()
         v.separatorStyle = .singleLine
-        v.rowHeight = UITableViewAutomaticDimension
+        v.rowHeight = UITableView.automaticDimension
         return v
     }()
 

@@ -21,7 +21,7 @@ class CurrentGroupCell: UIView {
         setupLayout()
     }
     
-    func onSwitchValueChanged(_ sender: UISwitch) {
+    @objc func onSwitchValueChanged(_ sender: UISwitch) {
         switchButton.isHidden = true
         switchVPN?(sender.isOn)
     }

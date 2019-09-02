@@ -48,27 +48,27 @@ class ProxyListViewController: FormViewController {
             print("SKPaymentQueue.canMakePayments: false")
             return
         }
-        guard let store = DataInitializer.store else {
-            print("No store")
-            return
-        }
-        if store.products.count > 0 {
-            navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: #selector(onStore))
-        }
+//        guard let store = DataInitializer.store else {
+//            print("No store")
+//            return
+//        }
+//        if store.products.count > 0 {
+//            navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: #selector(onStore))
+//        }
     }
 
-    func add() {
+    @objc func add() {
         let vc = ProxyConfigurationViewController()
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    func onStore() {
-        guard let store = DataInitializer.store else {
-            print("No store")
-            return
-        }
-        let vc = IAPStoreVC(products: store.products)
-        navigationController?.pushViewController(vc, animated: true)
+    @objc func onStore() {
+//        guard let store = DataInitializer.store else {
+//            print("No store")
+//            return
+//        }
+//        let vc = IAPStoreVC(products: store.products)
+//        navigationController?.pushViewController(vc, animated: true)
     }
 
     func reloadData() {
@@ -120,10 +120,10 @@ class ProxyListViewController: FormViewController {
                                 cb(proxy)
                                 self?.close()
                             } else {
-                                if proxy.type != .none {
-                                    let vc = CloudProxyDetailViewController(cloudProxy: proxy)
-                                    self?.navigationController?.pushViewController(vc, animated: true)
-                                }
+//                                if proxy.type != .none {
+//                                    let vc = CloudProxyDetailViewController(cloudProxy: proxy)
+//                                    self?.navigationController?.pushViewController(vc, animated: true)
+//                                }
                             }
                             })
             }
@@ -142,14 +142,14 @@ class ProxyListViewController: FormViewController {
         return true
     }
 
-    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         if indexPath.section == 0 {
             return .delete
         }
         return .delete
     }
 
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle != .delete {
             return
         }

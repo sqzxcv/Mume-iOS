@@ -55,7 +55,7 @@ target "PacketProcessor" do
 end
 
 target "TodayWidget" do
-    pod 'Cartography'
+    pod 'Cartography', '4.0.0'
     pod 'SwiftColor'
     library
     socket

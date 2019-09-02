@@ -116,7 +116,7 @@ class RuleSetConfigurationViewController: FormViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    func save() {
+    @objc func save() {
         do {
             let values = form.values()
             guard let name = (values[kRuleSetFormName] as? String)?.trimmingCharacters(in: CharacterSet.whitespaces), name.characters.count > 0 else {
@@ -140,7 +140,7 @@ class RuleSetConfigurationViewController: FormViewController {
         return false
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             ruleSet.removeRule(atIndex: indexPath.row - 1)
             form[indexPath].hidden = true
@@ -148,8 +148,8 @@ class RuleSetConfigurationViewController: FormViewController {
         }
     }
     
-    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
-        return UITableViewCellEditingStyle.delete
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return UITableViewCell.EditingStyle.delete
     }
     
 }

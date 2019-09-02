@@ -67,7 +67,7 @@ class CloudProxyDetailViewController: ProxyConfigurationViewController {
         }
     }
     
-    override func onSave() {
+    @objc override func onSave() {
         try? DBUtils.add(self.cloudProxy)
         if let ip = self.cloudProxy.ip {
             self.upstreamProxy.ip = ip

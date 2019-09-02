@@ -12,7 +12,7 @@ import PotatsoModel
 
 class RuleSetCell: UITableViewCell {
 
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         preservesSuperviewLayoutMargins = false
         layoutMargins = UIEdgeInsets.zero
@@ -26,8 +26,8 @@ class RuleSetCell: UITableViewCell {
 //        contentView.addSubview(avatarImageView)
 //        contentView.addSubview(authorNameLabel)
 //        contentView.addSubview(updateAtLabel)
-        countLabel.setContentHuggingPriority(UILayoutPriorityRequired, for: .horizontal)
-        countLabel.setContentCompressionResistancePriority(UILayoutPriorityRequired, for: .horizontal)
+        countLabel.setContentHuggingPriority(UILayoutPriority.required, for: .horizontal)
+        countLabel.setContentCompressionResistancePriority(UILayoutPriority.required, for: .horizontal)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -66,7 +66,7 @@ class RuleSetCell: UITableViewCell {
         let screenWidth = UIScreen.main.bounds.width
         var y: CGFloat = 24 + 13 + 11
         let desc = ruleSet.desc as NSString
-        let rect = desc.boundingRect(with: CGSize(width: screenWidth - 30 - 7, height: 128), options: .usesLineFragmentOrigin, attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 13)], context: nil)
+        let rect = desc.boundingRect(with: CGSize(width: screenWidth - 30 - 7, height: 128), options: .usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13)], context: nil)
         y += rect.height
         
         if ruleSet.isSubscribe {
@@ -160,7 +160,7 @@ class RuleSetCell: UITableViewCell {
         let v = PaddingLabel()
         v.textColor = UIColor.white
         v.font = UIFont.systemFont(ofSize: 10)
-        v.padding = UIEdgeInsetsMake(3, 10, 3, 10)
+        v.padding = UIEdgeInsets(top: 3, left: 10, bottom: 3, right: 10)
         v.layer.cornerRadius = 3
         v.layer.masksToBounds = true
         v.clipsToBounds = true

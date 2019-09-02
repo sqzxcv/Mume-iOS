@@ -191,6 +191,7 @@
 		B8F7845C1D36760D00F02FF5 /* DashboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F7845B1D36760D00F02FF5 /* DashboardVC.swift */; };
 		B8F784671D3678B400F02FF5 /* Settings.h in Headers */ = {isa = PBXBuildFile; fileRef = B8F784651D3678B400F02FF5 /* Settings.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B8F784681D3678B400F02FF5 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F784661D3678B400F02FF5 /* Settings.m */; };
+		EB74BD33231D510C00868FD3 /* NetworkReachabilityManagerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB74BD32231D510C00868FD3 /* NetworkReachabilityManagerExtensions.swift */; };
 		FE9B3692D19B03821360B886 /* Pods_PotatsoLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFAF05C4CA29869A03E25A65 /* Pods_PotatsoLibrary.framework */; };
 /* End PBXBuildFile section */
 
@@ -869,6 +870,7 @@
 		B8F784651D3678B400F02FF5 /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
 		B8F784661D3678B400F02FF5 /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Settings.m; sourceTree = "<group>"; };
 		DFAF05C4CA29869A03E25A65 /* Pods_PotatsoLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PotatsoLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB74BD32231D510C00868FD3 /* NetworkReachabilityManagerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkReachabilityManagerExtensions.swift; sourceTree = "<group>"; };
 		F5F5D562F9497CEBA25A466F /* Pods-PotatsoLibrary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PotatsoLibrary.release.xcconfig"; path = "Pods/Target Support Files/Pods-PotatsoLibrary/Pods-PotatsoLibrary.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1035,6 +1037,7 @@
 				9B8193EC1CBE4DCA00BE320D /* UrlHandler.swift */,
 				9B1F74611C2F85540028C1A6 /* UIManager.swift */,
 				9B54CC431C1C266C00DDEEBB /* UIViewControllerExtensions.swift */,
+				EB74BD32231D510C00868FD3 /* NetworkReachabilityManagerExtensions.swift */,
 				9B5C00221CBFB315008DDE7A /* Home */,
 				9BB3F74D1CC6303700C2DD05 /* Dashboard */,
 				9B9073491CC1D7EB00A3185A /* Manage */,
@@ -2235,6 +2238,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				Base,
 				"zh-Hans",
 				"zh-Hant",
@@ -2625,6 +2629,7 @@
 				9B2290FF1C8E5B9600EEC901 /* DataInitializer.swift in Sources */,
 				9BB62FA31C8FFC1D002ADC54 /* RuleSetConfigurationViewController.swift in Sources */,
 				9BF3034B1CCA1B060096588E /* BaseEmptyView.swift in Sources */,
+				EB74BD33231D510C00868FD3 /* NetworkReachabilityManagerExtensions.swift in Sources */,
 				9B5E13BA1C897870007DFE0A /* ProxyConfigurationViewController.swift in Sources */,
 				B8367A811D1B6D5400D50C25 /* BaseButtonRow.swift in Sources */,
 				B87B980A1D3B64BE00FA66BF /* RequestEventRow.swift in Sources */,
@@ -3079,7 +3084,7 @@
 				INFOPLIST_FILE = TodayWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.nina.mtfly2.TodayWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nina.mtfly2.today;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -3100,7 +3105,7 @@
 				INFOPLIST_FILE = TodayWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.nina.mtfly2.TodayWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nina.mtfly2.today;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;

@@ -315,7 +315,7 @@ extension Manager {
         let directDomainsUrl = confDirUrl.appendingPathComponent("mume.direct")
         for p in [confDirUrl.path, templateDirPath, temporaryDirPath, logDir] {
             if !FileManager.default.fileExists(atPath: p) {
-                _ = try? FileManager.default.createDirectory(atPath: p, withIntermediateDirectories: true, attributes: [FileAttributeKey.protectionKey.rawValue: FileProtectionType.none])
+                _ = try? FileManager.default.createDirectory(atPath: p, withIntermediateDirectories: true, attributes: [FileAttributeKey(rawValue: FileAttributeKey.protectionKey.rawValue): FileProtectionType.none])
             }
         }
         

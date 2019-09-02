@@ -15,7 +15,7 @@ final class ProxyRow: Row<ProxyRowCell>, RowType {
 
     required init(tag: String?) {
         super.init(tag: tag)
-        self.cellStyle = UITableViewCellStyle.subtitle
+        self.cellStyle = UITableViewCell.CellStyle.subtitle
         displayValueFor = nil
     }
 }
@@ -23,7 +23,7 @@ final class ProxyRow: Row<ProxyRowCell>, RowType {
 
 class ProxyRowCell: Cell<Proxy>, CellType {
 
-    required init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    required init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
     

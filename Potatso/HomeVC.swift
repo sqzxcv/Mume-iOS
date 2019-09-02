@@ -91,7 +91,7 @@ class HomeVC: FormViewController, UINavigationControllerDelegate, HomePresenterP
         stopTimer()
     }
     
-    func addProxy(_ sender: AnyObject) {
+    @objc func addProxy(_ sender: AnyObject) {
         let alert = UIAlertController(title: "Add Proxy".localized(), message: nil, preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Import From QRCode".localized(), style: .default, handler: { (action) in
             let importer = Importer(vc: self)
@@ -139,11 +139,11 @@ class HomeVC: FormViewController, UINavigationControllerDelegate, HomePresenterP
     }
 
     func updateTitle() {
-        titleButton.setTitle(presenter.group.name, for: UIControlState())
+        titleButton.setTitle(presenter.group.name, for: UIControl.State())
         titleButton.sizeToFit()
     }
 
-    func updateForm() {
+    @objc func updateForm() {
         form.delegate = nil
         form.removeAll()
 
@@ -165,7 +165,7 @@ class HomeVC: FormViewController, UINavigationControllerDelegate, HomePresenterP
             section
                 <<< ProxyRow() {
                     $0.value = nil
-                    $0.cellStyle = UITableViewCellStyle.subtitle
+                    $0.cellStyle = UITableViewCell.CellStyle.subtitle
                     }.cellSetup({ (cell, row) -> () in
                         cell.selectionStyle = .none
                         cell.accessoryType = .none
@@ -180,7 +180,7 @@ class HomeVC: FormViewController, UINavigationControllerDelegate, HomePresenterP
             section
                 <<< ProxyRow() {
                     $0.value = proxy
-                    $0.cellStyle = UITableViewCellStyle.subtitle
+                    $0.cellStyle = UITableViewCell.CellStyle.subtitle
                     }.cellSetup({ (cell, row) -> () in
                         cell.selectionStyle = .none
                         cell.setSelected(self.presenter.proxy?.uuid == proxy.uuid, animated: false)
@@ -191,10 +191,10 @@ class HomeVC: FormViewController, UINavigationControllerDelegate, HomePresenterP
                         }
                         row.updateCell()
                         if (self.presenter.proxy?.uuid == proxy.uuid) {
-                            if proxy.type != .none {
-                                let vc = ProxyConfigurationViewController(upstreamProxy: proxy, readOnly: true)
-                                self.navigationController?.pushViewController(vc, animated: true)
-                            }
+//                            if proxy.type != .none {
+//                                let vc = ProxyConfigurationViewController(upstreamProxy: proxy, readOnly: true)
+//                                self.navigationController?.pushViewController(vc, animated: true)
+//                            }
                             return
                         }
                         if self.presenter.change(proxy: proxy, status: self.status) {
@@ -296,7 +296,7 @@ class HomeVC: FormViewController, UINavigationControllerDelegate, HomePresenterP
 
     // MARK: - Private Actions
 
-    func handleConnectButtonPressed() {
+    @objc func handleConnectButtonPressed() {
         if status == .on {
             status = .disconnecting
         } else {
@@ -305,11 +305,11 @@ class HomeVC: FormViewController, UINavigationControllerDelegate, HomePresenterP
         presenter.switchVPN()
     }
 
-    func handleTitleButtonPressed() {
+    @objc func handleTitleButtonPressed() {
         presenter.changeGroupName()
     }
 
-    func onServerConfigurationUpdated() {
+    @objc func onServerConfigurationUpdated() {
         guard let rules = DataInitializer.serverConfigurations["rules"] as? String else {
             return
         }
@@ -341,7 +341,7 @@ class HomeVC: FormViewController, UINavigationControllerDelegate, HomePresenterP
         return false
     }
 
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             do {
                 let group = presenter.group
@@ -359,7 +359,7 @@ class HomeVC: FormViewController, UINavigationControllerDelegate, HomePresenterP
         }
     }
 
-    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .delete
     }
     
@@ -393,7 +393,7 @@ class HomeVC: FormViewController, UINavigationControllerDelegate, HomePresenterP
 
     lazy var titleButton: UIButton = {
         let b = UIButton(type: .custom)
-        b.setTitleColor(UIColor.black, for: UIControlState())
+        b.setTitleColor(UIColor.black, for: UIControl.State())
         b.addTarget(self, action: #selector(HomeVC.handleTitleButtonPressed), for: .touchUpInside)
         if let titleLabel = b.titleLabel {
             titleLabel.font = UIFont.boldSystemFont(ofSize: titleLabel.font.pointSize)
@@ -413,7 +413,7 @@ class HomeVC: FormViewController, UINavigationControllerDelegate, HomePresenterP
         timer = nil
     }
     
-    func onTime() {
+    @objc func onTime() {
         updateConnectButton()
     }
 }

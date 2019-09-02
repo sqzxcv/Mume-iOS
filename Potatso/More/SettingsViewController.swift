@@ -12,6 +12,7 @@ import ICSMainFramework
 import MessageUI
 import SafariServices
 import PotatsoLibrary
+import Alamofire
 
 enum FeedBackType: String, CustomStringConvertible {
     case Email = "Email"
@@ -206,7 +207,7 @@ class SettingsViewController: FormViewController, MFMailComposeViewControllerDel
         let lang = Locale.preferredLanguages[0]
         let versionCode = (Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String) ?? ""
         NSLog("showUserManual ===> lang: \(lang), version: \(versionCode)")
-        let network = (DataInitializer.reachabilityManager?.networkReachabilityStatus.description()) ?? ""
+        let network = NetworkReachabilityManager.networkStatusName(manager: DataInitializer.reachabilityManager)
         let vi = (UIDevice.current.identifierForVendor?.uuidString) ?? ""
         guard let manurl = URL(string: url + "?lang=\(lang)&identifierForVendor=\(vi)&api=2&network=\(network)&appstore=\(AppEnv.isAppStore)") else {
             return

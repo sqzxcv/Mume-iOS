@@ -11,9 +11,10 @@ import PotatsoModel
 import Alamofire
 import ObjectMapper
 import ICSMainFramework
+import CoreTelephony
 
 struct API {
-
+    // TODO: Use your own API
     static let URL = "https://api.mume.red/"
 
     enum Path {
@@ -52,7 +53,7 @@ struct API {
     
     static func getRuleSets(_ callback: @escaping ([RuleSet]) -> Void) {
         let lang = Locale.preferredLanguages[0]
-        let network = (DataInitializer.reachabilityManager?.networkReachabilityStatus.description()) ?? ""
+        let network = NetworkReachabilityManager.networkStatusName(manager: DataInitializer.reachabilityManager)
         let vi = (UIDevice.current.identifierForVendor?.uuidString) ?? ""
         var parameters: Parameters = ["lang": lang, "version": AppEnv.version, "build": AppEnv.build, "identifierForVendor": vi, "network": network, "appstore": AppEnv.isAppStore]
         let networkInfo = CTTelephonyNetworkInfo()
@@ -83,7 +84,7 @@ struct API {
         let lang = Locale.preferredLanguages[0]
         let kCloudProxySets = "kCloudProxySets" + AppEnv.version
         
-        let network = (DataInitializer.reachabilityManager?.networkReachabilityStatus.description()) ?? ""
+        let network = NetworkReachabilityManager.networkStatusName(manager: DataInitializer.reachabilityManager)
         let vi = (UIDevice.current.identifierForVendor?.uuidString) ?? ""
         var parameters: Parameters = ["lang": lang, "version": AppEnv.version, "build": AppEnv.build, "identifierForVendor": vi, "network": network, "appstore": AppEnv.isAppStore]
         #if DEBUG
@@ -96,6 +97,7 @@ struct API {
             parameters["mobileNetworkCode"] = carrier.mobileNetworkCode
             parameters["isoCountryCode"] = carrier.isoCountryCode
         }
+        // TODO: 添加订阅信息
         Alamofire.request("https://mumevpn.com/shared.php", parameters: parameters)
             .responseJSON { response in
                 print(response.response ?? "response.response") // URL response
