@@ -45,6 +45,8 @@
 #if defined(USE_CRYPTO_OPENSSL)
 
 #include <openssl/evp.h>
+#include <openssl/sha.h>
+#include <openssl/md5.h>
 typedef EVP_CIPHER cipher_kt_t;
 typedef EVP_CIPHER_CTX cipher_evp_t;
 typedef EVP_MD digest_type_t;
@@ -105,12 +107,29 @@ typedef struct {
 #endif
 
 typedef struct {
-    cipher_evp_t evp;
+    uint8_t *enc_table;
+    uint8_t *dec_table;
+    uint8_t enc_key[MAX_KEY_LENGTH];
+    int enc_key_len;
+    int enc_iv_len;
+    int enc_method;
+
+    struct cache *iv_cache;
+} cipher_env_t;
+
+typedef struct {
+    cipher_evp_t *evp;
 #ifdef USE_CRYPTO_APPLECC
     cipher_cc_t cc;
 #endif
     uint8_t iv[MAX_IV_LENGTH];
 } cipher_ctx_t;
+
+typedef struct {
+    cipher_kt_t *info;
+    size_t iv_len;
+    size_t key_len;
+} cipher_t;
 
 #ifdef HAVE_STDINT_H
 #include <stdint.h>
@@ -121,8 +140,8 @@ typedef struct {
 #define SODIUM_BLOCK_SIZE   64
 
 enum crpher_index {
-    NONE = -1,
-    TABLE = 0,
+    NONE,
+    TABLE,
     RC4,
     RC4_MD5_6,
     RC4_MD5,
@@ -147,12 +166,10 @@ enum crpher_index {
     CIPHER_NUM,
 };
 
-#define ONETIMEAUTH_FLAG 0x10
-#define ADDRTYPE_MASK 0xF
+#define ADDRTYPE_MASK 0xEF
 
-#define ONETIMEAUTH_BYTES 10U
-#define CLEN_BYTES 2U
-#define AUTH_BYTES (ONETIMEAUTH_BYTES + CLEN_BYTES)
+#define MD5_BYTES 16U
+#define SHA1_BYTES 20U
 
 #define min(a, b) (((a) < (b)) ? (a) : (b))
 #define max(a, b) (((a) > (b)) ? (a) : (b))
@@ -177,31 +194,37 @@ typedef struct enc_ctx {
     cipher_ctx_t evp;
 } enc_ctx_t;
 
-int ss_encrypt_all(buffer_t *plaintext, int method, int auth, size_t capacity);
-int ss_decrypt_all(buffer_t *ciphertext, int method, int auth, size_t capacity);
-int ss_encrypt(buffer_t *plaintext, enc_ctx_t *ctx, size_t capacity);
-int ss_decrypt(buffer_t *ciphertext, enc_ctx_t *ctx, size_t capacity);
+void bytes_to_key_with_size(const char *pass, size_t len, uint8_t *md, size_t md_size);
 
-void enc_ctx_init(int method, enc_ctx_t *ctx, int enc);
-int enc_init(const char *pass, const char *method);
-int enc_get_iv_len(void);
-uint8_t* enc_get_key(void);
-int enc_get_key_len(void);
-void cipher_context_release(cipher_ctx_t *evp);
+int rand_bytes(uint8_t *output, int len);
+
+int ss_encrypt_all(cipher_env_t* env, buffer_t *plaintext, size_t capacity);
+int ss_decrypt_all(cipher_env_t* env, buffer_t *ciphertext, size_t capacity);
+int ss_encrypt(cipher_env_t* env, buffer_t *plaintext, enc_ctx_t *ctx, size_t capacity);
+int ss_decrypt(cipher_env_t* env, buffer_t *ciphertext, enc_ctx_t *ctx, size_t capacity);
+
+int enc_init(cipher_env_t *env, const char *pass, const char *method);
+void enc_release(cipher_env_t *env);
+void enc_ctx_init(cipher_env_t *env, enc_ctx_t *ctx, int enc);
+void enc_ctx_release(cipher_env_t* env, enc_ctx_t *ctx);
+int enc_get_iv_len(cipher_env_t* env);
+uint8_t* enc_get_key(cipher_env_t* env);
+int enc_get_key_len(cipher_env_t* env);
+void cipher_context_release(cipher_env_t *env, cipher_ctx_t *ctx);
 unsigned char *enc_md5(const unsigned char *d, size_t n, unsigned char *md);
 
-int ss_sha1_hmac(char *auth, char *msg, int msg_len, uint8_t *iv);
+int ss_md5_hmac_with_key(char *auth, char *msg, int msg_len, uint8_t *auth_key, int key_len);
+int ss_md5_hash_func(char *auth, char *msg, int msg_len);
 int ss_sha1_hmac_with_key(char *auth, char *msg, int msg_len, uint8_t *auth_key, int key_len);
-int ss_onetimeauth(buffer_t *buf, uint8_t *iv, size_t capacity);
-int ss_onetimeauth_verify(buffer_t *buf, uint8_t *iv);
-
-int ss_check_hash(buffer_t *buf, chunk_t *chunk, enc_ctx_t *ctx, size_t capacity);
-int ss_gen_hash(buffer_t *buf, uint32_t *counter, enc_ctx_t *ctx, size_t capacity);
+int ss_sha1_hash_func(char *auth, char *msg, int msg_len);
+int ss_aes_128_cbc(char *encrypt, char *out_data, char *key);
+int ss_encrypt_buffer(cipher_env_t *env, enc_ctx_t *ctx, char *in, size_t in_size, char *out, size_t *out_size);
+int ss_decrypt_buffer(cipher_env_t *env, enc_ctx_t *ctx, char *in, size_t in_size, char *out, size_t *out_size);
 
 int balloc(buffer_t *ptr, size_t capacity);
 int brealloc(buffer_t *ptr, size_t len, size_t capacity);
 void bfree(buffer_t *ptr);
 
-int rand_bytes(uint8_t *output, int len);
+//extern cipher_env_t cipher_env;
 
 #endif // _ENCRYPT_H

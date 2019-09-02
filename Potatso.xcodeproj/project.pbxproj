@@ -171,14 +171,11 @@
 		B83D3E791D2BA689007655CE /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83D3E781D2BA689007655CE /* Event.swift */; };
 		B84551401CF83D07005779CD /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B845513F1CF83D07005779CD /* HomeVC.swift */; };
 		B84551421CF878BD005779CD /* ConfigGroupChooseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84551411CF878BD005779CD /* ConfigGroupChooseVC.swift */; };
-		B86B08EC1D17F85800613014 /* ShadowPath.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B86B08E91D17F84900613014 /* ShadowPath.framework */; };
-		B86B08ED1D17FB9B00613014 /* ShadowPath.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B86B08E91D17F84900613014 /* ShadowPath.framework */; };
 		B87A043A1D193ABC001132F2 /* LoggerUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87A04391D193ABC001132F2 /* LoggerUtils.swift */; };
 		B87B98041D3B423B00FA66BF /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87B98031D3B423B00FA66BF /* PaddingLabel.swift */; };
 		B87B980A1D3B64BE00FA66BF /* RequestEventRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87B98091D3B64BE00FA66BF /* RequestEventRow.swift */; };
 		B88096B21D0652F0008BEB87 /* RuleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88096B11D0652F0008BEB87 /* RuleCell.swift */; };
 		B88559F01D21371A00B1243E /* PotatsoModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BC6FFEA1CB28B4B00E5EA61 /* PotatsoModel.framework */; };
-		B88874491D18186100AEF002 /* ShadowPath.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B86B08E91D17F84900613014 /* ShadowPath.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B8C256B01D1A957A0074D3B1 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C256AF1D1A957A0074D3B1 /* HomePresenter.swift */; };
 		B8CCC6DD1CFD5D5D000E7E2E /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CCC6DC1CFD5D5D000E7E2E /* CollectionViewController.swift */; };
 		B8CCC6E11CFDCADC000E7E2E /* RuleSetListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CCC6E01CFDCADC000E7E2E /* RuleSetListViewController.swift */; };
@@ -191,6 +188,10 @@
 		B8F7845C1D36760D00F02FF5 /* DashboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F7845B1D36760D00F02FF5 /* DashboardVC.swift */; };
 		B8F784671D3678B400F02FF5 /* Settings.h in Headers */ = {isa = PBXBuildFile; fileRef = B8F784651D3678B400F02FF5 /* Settings.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B8F784681D3678B400F02FF5 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F784661D3678B400F02FF5 /* Settings.m */; };
+		EB2D2A83231D974A00615A63 /* ShadowPath.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB2D2A7F231D933F00615A63 /* ShadowPath.framework */; };
+		EB2D2A84231D975400615A63 /* ShadowPath.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB2D2A7F231D933F00615A63 /* ShadowPath.framework */; };
+		EB2D2A85231D975D00615A63 /* ShadowPath.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB2D2A7F231D933F00615A63 /* ShadowPath.framework */; };
+		EB2D2A86231D975D00615A63 /* ShadowPath.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EB2D2A7F231D933F00615A63 /* ShadowPath.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EB74BD33231D510C00868FD3 /* NetworkReachabilityManagerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB74BD32231D510C00868FD3 /* NetworkReachabilityManagerExtensions.swift */; };
 		FE9B3692D19B03821360B886 /* Pods_PotatsoLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFAF05C4CA29869A03E25A65 /* Pods_PotatsoLibrary.framework */; };
 /* End PBXBuildFile section */
@@ -238,19 +239,26 @@
 			remoteGlobalIDString = 9BDA625A1CAE2576007F2581;
 			remoteInfo = PacketProcessor;
 		};
-		B86B08E81D17F84900613014 /* PBXContainerItemProxy */ = {
+		EB2D2A7E231D933F00615A63 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = B86B08E31D17F84900613014 /* ShadowPath.xcodeproj */;
+			containerPortal = EB2D2A79231D933E00615A63 /* ShadowPath.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = B8DEFD7B1CE9C923003FC706;
 			remoteInfo = ShadowPath;
 		};
-		B86B08EA1D17F84900613014 /* PBXContainerItemProxy */ = {
+		EB2D2A80231D933F00615A63 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = B86B08E31D17F84900613014 /* ShadowPath.xcodeproj */;
+			containerPortal = EB2D2A79231D933E00615A63 /* ShadowPath.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = B82847B41CEB14B000820456;
 			remoteInfo = ShadowPathDemo;
+		};
+		EB2D2A87231D975D00615A63 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EB2D2A79231D933E00615A63 /* ShadowPath.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = B8DEFD7A1CE9C923003FC706;
+			remoteInfo = ShadowPath;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -273,10 +281,10 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				B88874491D18186100AEF002 /* ShadowPath.framework in Embed Frameworks */,
 				9BC6FFF21CB28B4B00E5EA61 /* PotatsoModel.framework in Embed Frameworks */,
 				9B9B15C51C21595B000B6541 /* PotatsoLibrary.framework in Embed Frameworks */,
 				9BC600251CB2921C00E5EA61 /* PotatsoBase.framework in Embed Frameworks */,
+				EB2D2A86231D975D00615A63 /* ShadowPath.framework in Embed Frameworks */,
 				9BDA62631CAE2576007F2581 /* PacketProcessor.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -850,7 +858,6 @@
 		B83D3E781D2BA689007655CE /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		B845513F1CF83D07005779CD /* HomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		B84551411CF878BD005779CD /* ConfigGroupChooseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigGroupChooseVC.swift; sourceTree = "<group>"; };
-		B86B08E31D17F84900613014 /* ShadowPath.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ShadowPath.xcodeproj; path = Library/ShadowPath/ShadowPath.xcodeproj; sourceTree = SOURCE_ROOT; };
 		B87A04391D193ABC001132F2 /* LoggerUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggerUtils.swift; sourceTree = "<group>"; };
 		B87B98031D3B423B00FA66BF /* PaddingLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		B87B98091D3B64BE00FA66BF /* RequestEventRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestEventRow.swift; sourceTree = "<group>"; };
@@ -870,6 +877,7 @@
 		B8F784651D3678B400F02FF5 /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
 		B8F784661D3678B400F02FF5 /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Settings.m; sourceTree = "<group>"; };
 		DFAF05C4CA29869A03E25A65 /* Pods_PotatsoLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PotatsoLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB2D2A79231D933E00615A63 /* ShadowPath.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ShadowPath.xcodeproj; path = Library/ShadowPath/ShadowPath.xcodeproj; sourceTree = SOURCE_ROOT; };
 		EB74BD32231D510C00868FD3 /* NetworkReachabilityManagerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkReachabilityManagerExtensions.swift; sourceTree = "<group>"; };
 		F5F5D562F9497CEBA25A466F /* Pods-PotatsoLibrary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PotatsoLibrary.release.xcconfig"; path = "Pods/Target Support Files/Pods-PotatsoLibrary/Pods-PotatsoLibrary.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -879,13 +887,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B86B08ED1D17FB9B00613014 /* ShadowPath.framework in Frameworks */,
 				9BC600241CB2921C00E5EA61 /* PotatsoBase.framework in Frameworks */,
 				9BDA62621CAE2576007F2581 /* PacketProcessor.framework in Frameworks */,
 				9B9B15C41C21595B000B6541 /* PotatsoLibrary.framework in Frameworks */,
 				9BC6FFF11CB28B4B00E5EA61 /* PotatsoModel.framework in Frameworks */,
 				553D95BB1D63FE6700B193B7 /* NetworkExtension.framework in Frameworks */,
 				234575943B38F4EAD3E2B481 /* Pods_Potatso.framework in Frameworks */,
+				EB2D2A85231D975D00615A63 /* ShadowPath.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -893,6 +901,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB2D2A84231D975400615A63 /* ShadowPath.framework in Frameworks */,
 				B88559F01D21371A00B1243E /* PotatsoModel.framework in Frameworks */,
 				553D95BD1D63FEDF00B193B7 /* NetworkExtension.framework in Frameworks */,
 				9B8193DC1CBDE68100BE320D /* PotatsoBase.framework in Frameworks */,
@@ -906,7 +915,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B86B08EC1D17F85800613014 /* ShadowPath.framework in Frameworks */,
+				EB2D2A83231D974A00615A63 /* ShadowPath.framework in Frameworks */,
 				553D95BC1D63FECA00B193B7 /* NetworkExtension.framework in Frameworks */,
 				9BC600361CB29AFF00E5EA61 /* PotatsoBase.framework in Frameworks */,
 				9BCE27AF1CAE535800B1E561 /* PacketProcessor.framework in Frameworks */,
@@ -1048,6 +1057,7 @@
 				9B17F8EC1C53392D00679FCB /* Utils */,
 				9B1F745D1C2F83AD0028C1A6 /* config.plist */,
 				9B0CFA151C1C0B1B007BD7C6 /* Assets.xcassets */,
+				EB2D2A79231D933E00615A63 /* ShadowPath.xcodeproj */,
 				9B0CFA171C1C0B1B007BD7C6 /* LaunchScreen.storyboard */,
 				9B0CFA1A1C1C0B1B007BD7C6 /* Info.plist */,
 				B8319A0F1D1BD696001E50C2 /* Localizable.strings */,
@@ -1140,7 +1150,6 @@
 				9B87060A1C1DBCCD00651424 /* dns.m */,
 				B8EAC5921D40BF310046963C /* TunnelError.h */,
 				B8EAC5931D40BF310046963C /* TunnelError.m */,
-				B86B08E31D17F84900613014 /* ShadowPath.xcodeproj */,
 				9B8706011C1D788F00651424 /* Info.plist */,
 				9B8705FC1C1D788F00651424 /* Supporting Files */,
 			);
@@ -1926,15 +1935,6 @@
 			name = Row;
 			sourceTree = "<group>";
 		};
-		B86B08E41D17F84900613014 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				B86B08E91D17F84900613014 /* ShadowPath.framework */,
-				B86B08EB1D17F84900613014 /* ShadowPathDemo.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		B8C256AC1D1A93CC0074D3B1 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -1960,6 +1960,15 @@
 				972ACD00F18B9E461F9D38B1 /* Pods_PotatsoModel.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EB2D2A7A231D933E00615A63 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EB2D2A7F231D933F00615A63 /* ShadowPath.framework */,
+				EB2D2A81231D933F00615A63 /* ShadowPathDemo.app */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2027,6 +2036,7 @@
 				9BC6FFF01CB28B4B00E5EA61 /* PBXTargetDependency */,
 				9BC600231CB2921C00E5EA61 /* PBXTargetDependency */,
 				9B8193BD1CBCFEE700BE320D /* PBXTargetDependency */,
+				EB2D2A88231D975D00615A63 /* PBXTargetDependency */,
 			);
 			name = Potatso;
 			productName = Potatso;
@@ -2268,8 +2278,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = B86B08E41D17F84900613014 /* Products */;
-					ProjectRef = B86B08E31D17F84900613014 /* ShadowPath.xcodeproj */;
+					ProductGroup = EB2D2A7A231D933E00615A63 /* Products */;
+					ProjectRef = EB2D2A79231D933E00615A63 /* ShadowPath.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -2286,18 +2296,18 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		B86B08E91D17F84900613014 /* ShadowPath.framework */ = {
+		EB2D2A7F231D933F00615A63 /* ShadowPath.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = ShadowPath.framework;
-			remoteRef = B86B08E81D17F84900613014 /* PBXContainerItemProxy */;
+			remoteRef = EB2D2A7E231D933F00615A63 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		B86B08EB1D17F84900613014 /* ShadowPathDemo.app */ = {
+		EB2D2A81231D933F00615A63 /* ShadowPathDemo.app */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.application;
 			path = ShadowPathDemo.app;
-			remoteRef = B86B08EA1D17F84900613014 /* PBXContainerItemProxy */;
+			remoteRef = EB2D2A80231D933F00615A63 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -2799,6 +2809,11 @@
 			isa = PBXTargetDependency;
 			target = 9BDA625A1CAE2576007F2581 /* PacketProcessor */;
 			targetProxy = 9BDA62601CAE2576007F2581 /* PBXContainerItemProxy */;
+		};
+		EB2D2A88231D975D00615A63 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ShadowPath;
+			targetProxy = EB2D2A87231D975D00615A63 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

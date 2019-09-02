@@ -120,6 +120,7 @@ const char jcc_rcs[] = "$Id: jcc.c,v 1.440 2016/01/16 12:33:36 fabiankeil Exp $"
 const char jcc_h_rcs[] = JCC_H_VERSION;
 const char project_h_rcs[] = PROJECT_H_VERSION;
 
+int daemon_mode = 0;
 struct client_states clients[1];
 struct log_client_states *log_clients;
 struct log_client_states *log_clients_tail;
@@ -3368,11 +3369,7 @@ static void add_log_csp(struct client_state *csp) {
 
     if (log_clients_count > max_log_clients_count) {
         log_clients->csp->flags &= ~CSP_FLAG_LOG_REQUEST;
-        struct log_client_states *tmp = log_clients;
         log_clients = log_clients->next;
-        tmp->csp = NULL;
-        tmp->next = NULL;
-        freez(tmp);
         log_clients_count --;
     }
     unlock_log_request();

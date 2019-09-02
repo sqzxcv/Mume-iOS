@@ -33,9 +33,9 @@
 
 #if CORK_DEBUG_FILES
 #include <stdio.h>
-#define SP_DEBUG(...) fprintf(stderr, __VA_ARGS__)
+#define DEBUG(...) fprintf(stderr, __VA_ARGS__)
 #else
-#define SP_DEBUG(...) /* no debug messages */
+#define DEBUG(...) /* no debug messages */
 #endif
 
 
@@ -558,12 +558,12 @@ static int
 cork_file_mkdir_one(struct cork_file *file, cork_file_mode mode,
                     unsigned int flags)
 {
-    SP_DEBUG("mkdir %s\n", cork_path_get(file->path));
+    DEBUG("mkdir %s\n", cork_path_get(file->path));
 
     /* First check if the directory already exists. */
     rii_check(cork_file_stat(file));
     if (file->type == CORK_FILE_DIRECTORY) {
-        SP_DEBUG("  Already exists!\n");
+        DEBUG("  Already exists!\n");
         if (!(flags & CORK_FILE_PERMISSIVE)) {
             cork_system_error_set_explicit(EEXIST);
             return -1;
@@ -571,7 +571,7 @@ cork_file_mkdir_one(struct cork_file *file, cork_file_mode mode,
             return 0;
         }
     } else if (file->type != CORK_FILE_MISSING) {
-        SP_DEBUG("  Exists and not a directory!\n");
+        DEBUG("  Exists and not a directory!\n");
         cork_system_error_set_explicit(EEXIST);
         return -1;
     }
@@ -580,7 +580,7 @@ cork_file_mkdir_one(struct cork_file *file, cork_file_mode mode,
      * directory exists. */
     if (flags & CORK_FILE_RECURSIVE) {
         struct cork_path  *parent = cork_path_dirname(file->path);
-        SP_DEBUG("  Checking parent %s\n", cork_path_get(parent));
+        DEBUG("  Checking parent %s\n", cork_path_get(parent));
         if (parent->given.size == 0) {
             /* There is no parent; we're either at the filesystem root (for an
              * absolute path) or the current directory (for a relative one).
@@ -598,7 +598,7 @@ cork_file_mkdir_one(struct cork_file *file, cork_file_mode mode,
     }
 
     /* Create the directory already! */
-    SP_DEBUG("  Creating %s\n", cork_path_get(file->path));
+    DEBUG("  Creating %s\n", cork_path_get(file->path));
     rii_check_posix(mkdir(cork_path_get(file->path), mode));
     return 0;
 }
@@ -621,7 +621,7 @@ cork_file_remove_iterator(struct cork_file *file, const char *rel_name,
 int
 cork_file_remove(struct cork_file *file, unsigned int flags)
 {
-    SP_DEBUG("rm %s\n", cork_path_get(file->path));
+    DEBUG("rm %s\n", cork_path_get(file->path));
     rii_check(cork_file_stat(file));
 
     if (file->type == CORK_FILE_MISSING) {

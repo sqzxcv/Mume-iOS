@@ -17,14 +17,14 @@
 
 
 #if !defined(CORK_DEBUG_PROCESS)
-#define CORK_DEBUG_PROCESS  1
+#define CORK_DEBUG_PROCESS  0
 #endif
 
 #if CORK_DEBUG_PROCESS
 #include <stdio.h>
-#define SP_DEBUG(...) fprintf(stderr, __VA_ARGS__)
+#define DEBUG(...) fprintf(stderr, __VA_ARGS__)
 #else
-#define SP_DEBUG(...) /* no debug messages */
+#define DEBUG(...) /* no debug messages */
 #endif
 
 
@@ -83,7 +83,7 @@ cork_cleanup_call_one(struct cork_dllist_item *item, void *user_data)
 {
     struct cork_cleanup_entry  *entry =
         cork_container_of(item, struct cork_cleanup_entry, item);
-    SP_DEBUG("Call cleanup function [%d] %s\n", entry->priority, entry->name);
+    DEBUG("Call cleanup function [%d] %s\n", entry->priority, entry->name);
     entry->function();
     cork_cleanup_entry_free(entry);
 }
@@ -106,6 +106,6 @@ cork_cleanup_at_exit_named(const char *name, int priority,
 {
     struct cork_cleanup_entry  *entry =
         cork_cleanup_entry_new(name, priority, function);
-    SP_DEBUG("Register cleanup function [%d] %s\n", priority, name);
+    DEBUG("Register cleanup function [%d] %s\n", priority, name);
     cork_cleanup_entry_add(entry);
 }

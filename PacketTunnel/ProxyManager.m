@@ -135,7 +135,8 @@ void mumeLog(NSString* fmt, ...) {
     NSString *protocol = json[@"protocol"];
     NSString *obfs = json[@"obfs"];
     NSString *obfs_param = json[@"obfs_param"];
-    BOOL ota = [json[@"ota"] boolValue];
+    NSString *protocol_param = json[@"protocol_param"];
+//    BOOL ota = [json[@"ota"] boolValue];
     NSURL* rootUrl = [Potatso sharedUrl];
     NSURL* logPath = [rootUrl URLByAppendingPathComponent:shadowsocksLogFile];
     if (host && port && password && authscheme) {
@@ -148,7 +149,8 @@ void mumeLog(NSString* fmt, ...) {
         profile.local_addr = "127.0.0.1";
         profile.local_port = 0;
         profile.timeout = 600;
-        profile.auth = ota;
+//        profile.auth = ota;
+        profile.protocol_param = strdup([protocol_param UTF8String]);
         profile.log = strdup([logPath.path UTF8String]);
         if (protocol.length > 0) {
             profile.protocol = strdup([protocol UTF8String]);

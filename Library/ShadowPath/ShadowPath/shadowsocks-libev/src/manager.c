@@ -72,15 +72,16 @@
 #define BUF_SIZE 65535
 #endif
 
-int verbose      = 0;
-char *executable = "ss-server";
-char *working_dir = NULL;
+int verbose          = 0;
+char *executable     = "ss-server";
+char *working_dir    = NULL;
 int working_dir_size = 0;
 
 static struct cork_hash_table *server_table;
 
 #ifndef __MINGW32__
-static int setnonblocking(int fd)
+static int
+setnonblocking(int fd)
 {
     int flags;
     if (-1 == (flags = fcntl(fd, F_GETFL, 0))) {
@@ -91,19 +92,20 @@ static int setnonblocking(int fd)
 
 #endif
 
-static void build_config(char *prefix, struct server *server)
+static void
+build_config(char *prefix, struct server *server)
 {
-    char *path = NULL;
+    char *path    = NULL;
     int path_size = strlen(prefix) + strlen(server->port) + 20;
 
-    path = malloc(path_size);
+    path = ss_malloc(path_size);
     snprintf(path, path_size, "%s/.shadowsocks_%s.conf", prefix, server->port);
     FILE *f = fopen(path, "w+");
     if (f == NULL) {
         if (verbose) {
             LOGE("unable to open config file");
         }
-        free(path);
+        ss_free(path);
         return;
     }
     fprintf(f, "{\n");
@@ -111,10 +113,11 @@ static void build_config(char *prefix, struct server *server)
     fprintf(f, "\"password\":\"%s\",\n", server->password);
     fprintf(f, "}\n");
     fclose(f);
-    free(path);
+    ss_free(path);
 }
 
-static char *construct_command_line(struct manager_ctx *manager, struct server *server)
+static char *
+construct_command_line(struct manager_ctx *manager, struct server *server)
 {
     static char cmd[BUF_SIZE];
     int i;
@@ -135,6 +138,12 @@ static char *construct_command_line(struct manager_ctx *manager, struct server *
         int len = strlen(cmd);
         snprintf(cmd + len, BUF_SIZE - len, " -t %s", manager->timeout);
     }
+#ifdef HAVE_SETRLIMIT
+    if (manager->nofile) {
+        int len = strlen(cmd);
+        snprintf(cmd + len, BUF_SIZE - len, " -n %d", manager->nofile);
+    }
+#endif
     if (manager->user != NULL) {
         int len = strlen(cmd);
         snprintf(cmd + len, BUF_SIZE - len, " -a %s", manager->user);
@@ -151,13 +160,13 @@ static char *construct_command_line(struct manager_ctx *manager, struct server *
         int len = strlen(cmd);
         snprintf(cmd + len, BUF_SIZE - len, " -u");
     }
-    if (manager->auth) {
-        int len = strlen(cmd);
-        snprintf(cmd + len, BUF_SIZE - len, " -A");
-    }
     if (manager->fast_open) {
         int len = strlen(cmd);
         snprintf(cmd + len, BUF_SIZE - len, " --fast-open");
+    }
+    if (manager->mtu) {
+        int len = strlen(cmd);
+        snprintf(cmd + len, BUF_SIZE - len, " --mtu %d", manager->mtu);
     }
     for (i = 0; i < manager->nameserver_num; i++) {
         int len = strlen(cmd);
@@ -175,7 +184,8 @@ static char *construct_command_line(struct manager_ctx *manager, struct server *
     return cmd;
 }
 
-static char *get_data(char *buf, int len)
+static char *
+get_data(char *buf, int len)
 {
     char *data;
     int pos = 0;
@@ -190,7 +200,8 @@ static char *get_data(char *buf, int len)
     return data;
 }
 
-static char *get_action(char *buf, int len)
+static char *
+get_action(char *buf, int len)
 {
     char *action;
     int pos = 0;
@@ -209,7 +220,8 @@ static char *get_action(char *buf, int len)
     return action;
 }
 
-static struct server *get_server(char *buf, int len)
+static struct server *
+get_server(char *buf, int len)
 {
     char *data = get_data(buf, len);
     char error_buf[512];
@@ -227,7 +239,7 @@ static struct server *get_server(char *buf, int len)
         return NULL;
     }
 
-    struct server *server = (struct server *)malloc(sizeof(struct server));
+    struct server *server = ss_malloc(sizeof(struct server));
     memset(server, 0, sizeof(struct server));
     if (obj->type == json_object) {
         int i = 0;
@@ -255,7 +267,8 @@ static struct server *get_server(char *buf, int len)
     return server;
 }
 
-static int parse_traffic(char *buf, int len, char *port, uint64_t *traffic)
+static int
+parse_traffic(char *buf, int len, char *port, uint64_t *traffic)
 {
     char *data = get_data(buf, len);
     char error_buf[512];
@@ -288,7 +301,8 @@ static int parse_traffic(char *buf, int len, char *port, uint64_t *traffic)
     return 0;
 }
 
-static void add_server(struct manager_ctx *manager, struct server *server)
+static void
+add_server(struct manager_ctx *manager, struct server *server)
 {
     bool new = false;
     cork_hash_table_put(server_table, (void *)server->port, (void *)server, &new, NULL, NULL);
@@ -299,18 +313,19 @@ static void add_server(struct manager_ctx *manager, struct server *server)
     }
 }
 
-static void kill_server(char *prefix, char *pid_file)
+static void
+kill_server(char *prefix, char *pid_file)
 {
     char *path = NULL;
     int pid, path_size = strlen(prefix) + strlen(pid_file) + 2;
-    path = malloc(path_size);
+    path = ss_malloc(path_size);
     snprintf(path, path_size, "%s/%s", prefix, pid_file);
     FILE *f = fopen(path, "r");
     if (f == NULL) {
         if (verbose) {
             LOGE("unable to open pid file");
         }
-        free(path);
+        ss_free(path);
         return;
     }
     if (fscanf(f, "%d", &pid) != EOF) {
@@ -318,31 +333,33 @@ static void kill_server(char *prefix, char *pid_file)
     }
     fclose(f);
     remove(path);
-    free(path);
+    ss_free(path);
 }
 
-static void stop_server(char *prefix, char *port)
+static void
+stop_server(char *prefix, char *port)
 {
     char *path = NULL;
     int pid, path_size = strlen(prefix) + strlen(port) + 20;
-    path = malloc(path_size);
+    path = ss_malloc(path_size);
     snprintf(path, path_size, "%s/.shadowsocks_%s.pid", prefix, port);
     FILE *f = fopen(path, "r");
     if (f == NULL) {
         if (verbose) {
             LOGE("unable to open pid file");
         }
-        free(path);
+        ss_free(path);
         return;
     }
     if (fscanf(f, "%d", &pid) != EOF) {
         kill(pid, SIGTERM);
     }
     fclose(f);
-    free(path);
+    ss_free(path);
 }
 
-static void remove_server(char *prefix, char *port)
+static void
+remove_server(char *prefix, char *port)
 {
     char *old_port            = NULL;
     struct server *old_server = NULL;
@@ -356,7 +373,8 @@ static void remove_server(char *prefix, char *port)
     stop_server(prefix, port);
 }
 
-static void update_stat(char *port, uint64_t traffic)
+static void
+update_stat(char *port, uint64_t traffic)
 {
     void *ret = cork_hash_table_get(server_table, (void *)port);
     if (ret != NULL) {
@@ -365,7 +383,8 @@ static void update_stat(char *port, uint64_t traffic)
     }
 }
 
-static void manager_recv_cb(EV_P_ ev_io *w, int revents)
+static void
+manager_recv_cb(EV_P_ ev_io *w, int revents)
 {
     struct manager_ctx *manager = (struct manager_ctx *)w;
     socklen_t len;
@@ -487,7 +506,8 @@ ERROR_MSG:
     }
 }
 
-static void signal_cb(EV_P_ ev_signal *w, int revents)
+static void
+signal_cb(EV_P_ ev_signal *w, int revents)
 {
     if (revents & EV_SIGNAL) {
         switch (w->signum) {
@@ -498,7 +518,8 @@ static void signal_cb(EV_P_ ev_signal *w, int revents)
     }
 }
 
-int create_server_socket(const char *host, const char *port)
+int
+create_server_socket(const char *host, const char *port)
 {
     struct addrinfo hints;
     struct addrinfo *result, *rp, *ipv4v6bindall;
@@ -572,7 +593,8 @@ int create_server_socket(const char *host, const char *port)
     return server_sock;
 }
 
-int main(int argc, char **argv)
+int
+main(int argc, char **argv)
 {
     int i, c;
     int pid_flags         = 0;
@@ -586,9 +608,13 @@ int main(int argc, char **argv)
     char *iface           = NULL;
     char *manager_address = NULL;
 
-    int auth      = 0;
     int fast_open = 0;
     int mode      = TCP_ONLY;
+    int mtu       = 0;
+
+#ifdef HAVE_SETRLIMIT
+    static int nofile = 0;
+#endif
 
     int server_num = 0;
     char *server_host[MAX_REMOTE_NUM];
@@ -600,11 +626,12 @@ int main(int argc, char **argv)
 
     int option_index                    = 0;
     static struct option long_options[] = {
-        { "fast-open"      , no_argument      , 0, 0 },
-        { "acl"            , required_argument, 0, 0 },
+        { "fast-open",       no_argument,       0, 0 },
+        { "acl",             required_argument, 0, 0 },
         { "manager-address", required_argument, 0, 0 },
-        { "executable"     , required_argument, 0, 0 },
-        { "help"           , no_argument      , 0, 0 },
+        { "executable",      required_argument, 0, 0 },
+        { "mtu",             required_argument, 0, 0 },
+        { "help",            no_argument,       0, 0 },
         {                 0,                 0, 0, 0 }
     };
 
@@ -612,7 +639,7 @@ int main(int argc, char **argv)
 
     USE_TTY();
 
-    while ((c = getopt_long(argc, argv, "f:s:l:k:t:m:c:i:d:a:huUvA",
+    while ((c = getopt_long(argc, argv, "f:s:l:k:t:m:c:i:d:a:n:huUvA",
                             long_options, &option_index)) != -1)
         switch (c) {
         case 0:
@@ -625,6 +652,9 @@ int main(int argc, char **argv)
             } else if (option_index == 3) {
                 executable = optarg;
             } else if (option_index == 4) {
+                mtu = atoi(optarg);
+                LOGI("set MTU to %d", mtu);
+            } else if (option_index == 5) {
                 usage();
                 exit(EXIT_SUCCESS);
             }
@@ -674,10 +704,16 @@ int main(int argc, char **argv)
             usage();
             exit(EXIT_SUCCESS);
         case 'A':
-            auth = 1;
+            LOGI("The 'A' argument is deprecate! Ignored.");
             break;
+#ifdef HAVE_SETRLIMIT
+        case 'n':
+            nofile = atoi(optarg);
+            break;
+#endif
         case '?':
             // The option character is not recognized.
+            LOGE("Unrecognized option: %s", optarg);
             opterr = 1;
             break;
         }
@@ -690,18 +726,25 @@ int main(int argc, char **argv)
     if (conf_path != NULL) {
         conf = read_jconf(conf_path);
         if (server_num == 0) {
-            server_num = conf->remote_num;
-            for (i = 0; i < server_num; i++)
-                server_host[i] = conf->remote_addr[i].host;
+            server_num = conf->server_new_1.server_num;
+            //for (i = 0; i < server_num; i++)
+            //    server_host[i].host = conf->server_new_1.servers[i].server;
+            //    server_host[i].port = conf->server_new_1.servers[i].server_port;
+            //}
+        } else {
+            conf->server_new_1.server_num = 1;
         }
         if (password == NULL) {
-            password = conf->password;
+            password = conf->server_new_1.servers[0].password;
         }
         if (method == NULL) {
-            method = conf->method;
+            method = conf->server_new_1.servers[0].method;
         }
         if (timeout == NULL) {
             timeout = conf->timeout;
+        }
+        if (user == NULL) {
+            user = conf->user;
         }
 #ifdef TCP_FASTOPEN
         if (fast_open == 0) {
@@ -711,12 +754,17 @@ int main(int argc, char **argv)
         if (conf->nameserver != NULL) {
             nameservers[nameserver_num++] = conf->nameserver;
         }
-        if (auth == 0) {
-            auth = conf->auth;
-        }
         if (mode == TCP_ONLY) {
             mode = conf->mode;
         }
+        if (mtu == 0) {
+            mtu = conf->mtu;
+        }
+#ifdef HAVE_SETRLIMIT
+        if (nofile == 0) {
+            nofile = conf->nofile;
+        }
+#endif
     }
 
     if (server_num == 0) {
@@ -749,10 +797,6 @@ int main(int argc, char **argv)
 #endif
     }
 
-    if (auth) {
-        LOGI("onetime authentication enabled");
-    }
-
 #ifdef __MINGW32__
     winsock_init();
 #else
@@ -775,7 +819,6 @@ int main(int argc, char **argv)
     manager.fast_open       = fast_open;
     manager.verbose         = verbose;
     manager.mode            = mode;
-    manager.auth            = auth;
     manager.password        = password;
     manager.timeout         = timeout;
     manager.method          = method;
@@ -787,25 +830,35 @@ int main(int argc, char **argv)
     manager.host_num        = server_num;
     manager.nameservers     = nameservers;
     manager.nameserver_num  = nameserver_num;
+    manager.mtu             = mtu;
+#ifdef HAVE_SETRLIMIT
+    manager.nofile = nofile;
+#endif
 
     // initialize ev loop
     struct ev_loop *loop = EV_DEFAULT;
 
     // setuid
-    if (user != NULL) {
-        run_as(user);
+    if (user != NULL && ! run_as(user)) {
+        FATAL("failed to switch user");
     }
+
+#ifndef __MINGW32__
+    if (geteuid() == 0){
+        LOGI("running from root user");
+    }
+#endif
 
     struct passwd *pw   = getpwuid(getuid());
     const char *homedir = pw->pw_dir;
-    working_dir_size = strlen(homedir)+15;
-    working_dir = malloc(working_dir_size);
+    working_dir_size = strlen(homedir) + 15;
+    working_dir      = ss_malloc(working_dir_size);
     snprintf(working_dir, working_dir_size, "%s/.shadowsocks", homedir);
 
     int err = mkdir(working_dir, S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
     if (err != 0 && errno != EEXIST) {
         ERROR("mkdir");
-        free(working_dir);
+        ss_free(working_dir);
         FATAL("unable to create working directory");
     }
 
@@ -818,22 +871,25 @@ int main(int argc, char **argv)
             size_t len = strlen(ep->d_name);
             if (strcmp(ep->d_name + len - 3, "pid") == 0) {
                 kill_server(working_dir, ep->d_name);
-                if (verbose) LOGI("kill %s", ep->d_name);
+                if (verbose)
+                    LOGI("kill %s", ep->d_name);
             }
         }
-        closedir (dp);
+        closedir(dp);
     } else {
-        free(working_dir);
+        ss_free(working_dir);
         FATAL("Couldn't open the directory");
     }
 
     server_table = cork_string_hash_table_new(MAX_PORT_NUM, 0);
 
     if (conf != NULL) {
-        for (i = 0; i < conf->port_password_num; i++) {
-            struct server *server = (struct server *)malloc(sizeof(struct server));
-            strncpy(server->port, conf->port_password[i].port, 8);
-            strncpy(server->password, conf->port_password[i].password, 128);
+        for (i = 0; i < conf->server_new_1.server_num; i++) {
+            struct server *server = ss_malloc(sizeof(struct server));
+            memset(server, 0, sizeof(struct server));
+            //strncpy(server->port, conf->server_new_1.servers[i].server_port, 8);
+            snprintf(server->port, 8, "%d", conf->server_new_1.servers[i].server_port);
+            strncpy(server->password, conf->server_new_1.servers[i].password, 128);
             add_server(&manager, server);
         }
     }
@@ -846,7 +902,7 @@ int main(int argc, char **argv)
         struct sockaddr_un svaddr;
         sfd = socket(AF_UNIX, SOCK_DGRAM, 0);       /*  Create server socket */
         if (sfd == -1) {
-            free(working_dir);
+            ss_free(working_dir);
             FATAL("socket");
         }
 
@@ -854,7 +910,7 @@ int main(int argc, char **argv)
 
         if (remove(manager_address) == -1 && errno != ENOENT) {
             ERROR("bind");
-            free(working_dir);
+            ss_free(working_dir);
             exit(EXIT_FAILURE);
         }
 
@@ -864,13 +920,13 @@ int main(int argc, char **argv)
 
         if (bind(sfd, (struct sockaddr *)&svaddr, sizeof(struct sockaddr_un)) == -1) {
             ERROR("bind");
-            free(working_dir);
+            ss_free(working_dir);
             exit(EXIT_FAILURE);
         }
     } else {
         sfd = create_server_socket(ip_addr.host, ip_addr.port);
         if (sfd == -1) {
-            free(working_dir);
+            ss_free(working_dir);
             FATAL("socket");
         }
     }
@@ -903,7 +959,7 @@ int main(int argc, char **argv)
 
     ev_signal_stop(EV_DEFAULT, &sigint_watcher);
     ev_signal_stop(EV_DEFAULT, &sigterm_watcher);
-    free(working_dir);
+    ss_free(working_dir);
 
     return 0;
 }

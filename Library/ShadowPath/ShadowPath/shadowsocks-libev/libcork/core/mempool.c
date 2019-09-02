@@ -17,14 +17,14 @@
 
 
 #if !defined(CORK_DEBUG_MEMPOOL)
-#define CORK_DEBUG_MEMPOOL  1
+#define CORK_DEBUG_MEMPOOL  0
 #endif
 
 #if CORK_DEBUG_MEMPOOL
 #include <stdio.h>
-#define SP_DEBUG(...) fprintf(stderr, __VA_ARGS__)
+#define DEBUG(...) fprintf(stderr, __VA_ARGS__)
 #else
-#define SP_DEBUG(...) /* no debug messages */
+#define DEBUG(...) /* no debug messages */
 #endif
 
 
@@ -129,7 +129,7 @@ cork_mempool_new_block(struct cork_mempool *mp)
     /* Allocate the new block and add it to mp's block list. */
     struct cork_mempool_block  *block;
     void  *vblock;
-    SP_DEBUG("Allocating new %zu-byte block\n", mp->block_size);
+    DEBUG("Allocating new %zu-byte block\n", mp->block_size);
     block = cork_malloc(mp->block_size);
     block->next_block = mp->blocks;
     mp->blocks = block;
@@ -141,7 +141,7 @@ cork_mempool_new_block(struct cork_mempool *mp)
          (index + cork_mempool_object_size(mp)) <= mp->block_size;
          index += cork_mempool_object_size(mp)) {
         struct cork_mempool_object  *obj = vblock + index;
-        SP_DEBUG("  New object at %p[%p]\n", cork_mempool_get_object(obj), obj);
+        DEBUG("  New object at %p[%p]\n", cork_mempool_get_object(obj), obj);
         if (mp->init_object != NULL) {
             mp->init_object
                 (mp->user_data, cork_mempool_get_object(obj));
@@ -172,7 +172,7 @@ void
 cork_mempool_free_object(struct cork_mempool *mp, void *ptr)
 {
     struct cork_mempool_object  *obj = cork_mempool_get_header(ptr);
-    SP_DEBUG("Returning %p[%p] to memory pool\n", ptr, obj);
+    DEBUG("Returning %p[%p] to memory pool\n", ptr, obj);
     obj->next_free = mp->free_list;
     mp->free_list = obj;
     mp->allocated_count--;

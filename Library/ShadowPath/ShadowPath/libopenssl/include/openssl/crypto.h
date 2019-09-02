@@ -119,16 +119,16 @@
 
 # include <stdlib.h>
 
-# include "openssl/e_os2.h"
+# include <openssl/e_os2.h>
 
 # ifndef OPENSSL_NO_FP_API
 #  include <stdio.h>
 # endif
 
-# include "openssl/stack.h"
-# include "openssl/safestack.h"
-# include "openssl/opensslv.h"
-# include "openssl/ossl_typ.h"
+# include <openssl/stack.h>
+# include <openssl/safestack.h>
+# include <openssl/opensslv.h>
+# include <openssl/ossl_typ.h>
 
 # ifdef CHARSET_EBCDIC
 #  include <openssl/ebcdic.h>
@@ -138,7 +138,7 @@
  * Resolve problems on some operating systems with symbol names that clash
  * one way or another
  */
-# include "openssl/symhacks.h"
+# include <openssl/symhacks.h>
 
 #ifdef  __cplusplus
 extern "C" {
@@ -628,7 +628,7 @@ void OPENSSL_init(void);
  * into a defined order as the return value when a != b is undefined, other
  * than to be non-zero.
  */
-int CRYPTO_memcmp(const void *a, const void *b, size_t len);
+int CRYPTO_memcmp(const volatile void *a, const volatile void *b, size_t len);
 
 /* BEGIN ERROR CODES */
 /*

@@ -35,7 +35,7 @@
 /* #undef HAVE_COMMONCRYPTO_COMMONCRYPTO_H */
 
 /* Define to 1 if you have the declaration of `inet_ntop', and to 0 if you
-   don't. */
+ don't. */
 #define HAVE_DECL_INET_NTOP 1
 
 /* Define to 1 if you have the <dlfcn.h> header file. */
@@ -96,7 +96,7 @@
 /* #undef HAVE_LINUX_NETFILTER_IPV4_H */
 
 /* Define to 1 if you have the <linux/netfilter_ipv6/ip6_tables.h> header
-   file. */
+ file. */
 /* #undef HAVE_LINUX_NETFILTER_IPV6_IP6_TABLES_H */
 
 /* Define to 1 if you have the <locale.h> header file. */
@@ -259,7 +259,7 @@
 #define HAVE_ZLIB_H 1
 
 /* Define to the sub-directory in which libtool stores uninstalled libraries.
-   */
+ */
 #define LT_OBJDIR ".libs/"
 
 /* Define to 1 if assertions should be disabled. */
@@ -287,7 +287,7 @@
 #define PACKAGE_VERSION "2.4.8"
 
 /* Define to necessary symbol if this constant uses a non-standard name on
-   your system. */
+ your system. */
 /* #undef PTHREAD_CREATE_JOINABLE */
 
 /* Define as the return type of signal handlers (`int' or `void'). */
@@ -315,7 +315,7 @@
 /* #undef USE_CRYPTO_APPLECC */
 
 /* Use mbed TLS library */
-/* #undef USE_CRYPTO_MBEDTLS */
+/*#define USE_CRYPTO_MBEDTLS 1*/
 
 /* Use OpenSSL library */
 #define USE_CRYPTO_OPENSSL 1
@@ -349,7 +349,7 @@
 #define VERSION "2.4.8"
 
 /* Define WORDS_BIGENDIAN to 1 if your processor stores words with the most
-   significant byte first (like Motorola and SPARC, unlike Intel). */
+ significant byte first (like Motorola and SPARC, unlike Intel). */
 #if defined AC_APPLE_UNIVERSAL_BUILD
 # if defined __BIG_ENDIAN__
 #  define WORDS_BIGENDIAN 1
@@ -364,22 +364,22 @@
 /* #undef _MINIX */
 
 /* Define to 2 if the system does not provide POSIX.1 features except with
-   this defined. */
+ this defined. */
 /* #undef _POSIX_1_SOURCE */
 
 /* Define to 1 if you need to in order for `stat' and other things to work. */
 /* #undef _POSIX_SOURCE */
 
 /* Define for Solaris 2.5.1 so the uint8_t typedef from <sys/synch.h>,
-   <pthread.h>, or <semaphore.h> is not used. If the typedef were allowed, the
-   #define below would cause a syntax error. */
+ <pthread.h>, or <semaphore.h> is not used. If the typedef were allowed, the
+ #define below would cause a syntax error. */
 /* #undef _UINT8_T */
 
 /* Define to empty if `const' does not conform to ANSI C. */
 /* #undef const */
 
 /* Define to `__inline__' or `__inline' if that's what the C compiler
-   calls it, or to nothing if 'inline' is not supported under any name.  */
+ calls it, or to nothing if 'inline' is not supported under any name.  */
 #ifndef __cplusplus
 /* #undef inline */
 #endif
@@ -388,14 +388,14 @@
 /* #undef pid_t */
 
 /* Define to the equivalent of the C99 'restrict' keyword, or to
-   nothing if this is not supported.  Do not define if restrict is
-   supported directly.  */
+ nothing if this is not supported.  Do not define if restrict is
+ supported directly.  */
 #define restrict __restrict
 /* Work around a bug in Sun C++: it does not support _Restrict or
-   __restrict__, even though the corresponding Sun C compiler ends up with
-   "#define restrict _Restrict" or "#define restrict __restrict__" in the
-   previous line.  Perhaps some future version of Sun C++ will work with
-   restrict; if so, hopefully it defines __RESTRICT like Sun C does.  */
+ __restrict__, even though the corresponding Sun C compiler ends up with
+ "#define restrict _Restrict" or "#define restrict __restrict__" in the
+ previous line.  Perhaps some future version of Sun C++ will work with
+ restrict; if so, hopefully it defines __RESTRICT like Sun C does.  */
 #if defined __SUNPRO_CC && !defined __RESTRICT
 # define _Restrict
 # define __restrict__
@@ -408,12 +408,13 @@
 /* #undef ssize_t */
 
 /* Define to the type of an unsigned integer type of width exactly 16 bits if
-   such a type exists and the standard includes do not define it. */
+ such a type exists and the standard includes do not define it. */
 /* #undef uint16_t */
 
 /* Define to the type of an unsigned integer type of width exactly 8 bits if
-   such a type exists and the standard includes do not define it. */
+ such a type exists and the standard includes do not define it. */
 /* #undef uint8_t */
 
 /* Define as `fork' if `vfork' does not work. */
 /* #undef vfork */
+
