@@ -120,6 +120,7 @@ void mumeLog(NSString* fmt, ...) {
 
 - (void)_startShadowsocks {
     NSString *confContent = [NSString stringWithContentsOfURL:[Potatso sharedProxyConfUrl] encoding:NSUTF8StringEncoding error:nil];
+    NSLog(@"读取配置文件信息:%@", confContent);
     NSDictionary *json = [confContent jsonDictionary];
     self.proxyType = json[@"type"];
     NSString *host = json[@"host"];
@@ -136,9 +137,13 @@ void mumeLog(NSString* fmt, ...) {
     NSString *obfs = json[@"obfs"];
     NSString *obfs_param = json[@"obfs_param"];
     NSString *protocol_param = json[@"protocol_param"];
-//    BOOL ota = [json[@"ota"] boolValue];
     NSURL* rootUrl = [Potatso sharedUrl];
     NSURL* logPath = [rootUrl URLByAppendingPathComponent:shadowsocksLogFile];
+    
+    protocol_param = @"1391:wlv186hb4w";
+    obfs_param = @"836c01391.zhaoj.in";
+    protocol = @"auth_aes128_sha1";
+    obfs = @"http_simple";
     if (host && port && password && authscheme) {
         profile_t profile;
         memset(&profile, 0, sizeof(profile_t));
