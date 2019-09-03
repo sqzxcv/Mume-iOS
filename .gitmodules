@@ -1,3 +1,0 @@
-[submodule "Library/ShadowPath/ShadowPath/libmaxminddb"]
-	path = Library/ShadowPath/ShadowPath/libmaxminddb
-	url = git@github.com:liruqi/libmaxminddb.git
