@@ -34,6 +34,7 @@ typedef struct {
 
     /* SSR */
     char *protocol;
+    char *protocol_param;
     char *obfs;
     char *obfs_param;
 
